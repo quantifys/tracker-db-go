@@ -15,9 +15,11 @@ type User struct {
 	Phone        string         `gorm:"column:phone;unique" json:"phone"`
 	Email        sql.NullString `gorm:"column:email;unique" json:"email"`
 	Username     sql.NullString `gorm:"column:username;unique" json:"username"`
-	Role         string         `gorm:"column:role;default:end_user" json:"role"`
+	Role         int16          `gorm:"column:role;default:end_user" json:"role"`
 	PasswordHash sql.NullString `gorm:"column:password_hash" json:"passwordHash"`
 	ProfilePic   sql.NullString `gorm:"column:profile_pic" json:"profilePic"`
+	Gender       sql.NullInt16  `gorm:"column:gender" json:"gender"`
+	BirthDate    sql.NullTime   `gorm:"column:birth_date" json:"birthDate"`
 }
 
 func (User) TableName() string {
@@ -52,6 +54,12 @@ func (u User) Json() map[string]interface{} {
 	}
 	if u.ProfilePic.Valid {
 		payload["profilePic"] = u.ProfilePic.String
+	}
+	if u.Gender.Valid {
+		payload["gender"] = u.Gender.Int16
+	}
+	if u.BirthDate.Valid {
+		payload["birthDate"] = u.BirthDate.Time.Format(time.RFC3339)
 	}
 	return payload
 }

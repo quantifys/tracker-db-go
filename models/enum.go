@@ -1,6 +1,5 @@
 package models
 
-// tracker device type
 var TrackerDeviceType = newTrackerDeviceTypeRegistry()
 
 func newTrackerDeviceTypeRegistry() *trackerDeviceTypeRegistry {
@@ -17,7 +16,6 @@ type trackerDeviceTypeRegistry struct {
 	Pian   int16
 }
 
-// vehicle type
 var VehicleType = newVehicleTypeRegistry()
 
 func newVehicleTypeRegistry() *vehicleTypeRegistry {
@@ -32,4 +30,20 @@ type vehicleTypeRegistry struct {
 	LMV  int16
 	HMV  int16
 	Bike int16
+}
+
+var UserRole = newUserRoleRegistry()
+
+func newUserRoleRegistry() *userRoleRegistry {
+	return &userRoleRegistry{
+		Administrator: 1,
+		Manufacturer:  2,
+		EndUser:       3,
+	}
+}
+
+type userRoleRegistry struct {
+	Administrator int16
+	Manufacturer  int16
+	EndUser       int16
 }
