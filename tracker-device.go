@@ -13,7 +13,7 @@ type Device struct {
 	Imei2    string    `gorm:"column:imei_2;unique" json:"imei2"`
 	Phone1   string    `gorm:"column:phone_1;unique" json:"phone1"`
 	Phone2   string    `gorm:"column:phone_2;unique" json:"phone2"`
-	Type     string    `gorm:"column:type;" json:"type"`
+	Type     int16     `gorm:"column:type;" json:"type"`
 }
 
 func (Device) TableName() string {
