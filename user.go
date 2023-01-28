@@ -14,7 +14,7 @@ type User struct {
 	Name         string         `gorm:"column:name" json:"name"`
 	Phone        string         `gorm:"column:phone;unique" json:"phone"`
 	Email        sql.NullString `gorm:"column:email;unique" json:"email"`
-	Username     sql.NullString `gorm:"column:username;unique" json:"username"`
+	Username     string         `gorm:"column:username;unique" json:"username"`
 	Role         int16          `gorm:"column:role;default:3" json:"role"`
 	PasswordHash sql.NullString `gorm:"column:password_hash" json:"passwordHash"`
 	ProfilePic   sql.NullString `gorm:"column:profile_pic" json:"profilePic"`

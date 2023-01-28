@@ -19,3 +19,17 @@ type Device struct {
 func (Device) TableName() string {
 	return "devices"
 }
+
+func (u Device) Json() map[string]interface{} {
+	payload := map[string]interface{}{
+		"id":        u.Id,
+		"serialNo":  u.SerialNo,
+		"imei1":     u.Imei1,
+		"imei2":     u.Imei2,
+		"phone1":    u.Phone1,
+		"phone2":    u.Phone2,
+		"type":      u.Type,
+		"createdAt": u.CreatedAt,
+	}
+	return payload
+}

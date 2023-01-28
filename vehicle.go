@@ -28,3 +28,42 @@ type Vehicle struct {
 func (Vehicle) TableName() string {
 	return "vehicles"
 }
+
+func (u Vehicle) ShortJson() map[string]interface{} {
+	payload := map[string]interface{}{
+		"id":         u.Id,
+		"type":       u.Type,
+		"make":       u.VMake,
+		"model":      u.VModel,
+		"regNumber":  u.RegNumber,
+		"nickname":   u.Nickname,
+		"odometer":   u.Odometer,
+		"mileage":    u.Mileage,
+		"speedLimit": u.SpeedLimit,
+		"createdAt":  u.CreatedAt,
+	}
+	return payload
+}
+
+func (u Vehicle) Json(preload bool) map[string]interface{} {
+	payload := map[string]interface{}{
+		"id":         u.Id,
+		"type":       u.Type,
+		"make":       u.VMake,
+		"model":      u.VModel,
+		"regNumber":  u.RegNumber,
+		"attributes": u.Attributes,
+		"nickname":   u.Nickname,
+		"odometer":   u.Odometer,
+		"mileage":    u.Mileage,
+		"speedLimit": u.SpeedLimit,
+		"createdAt":  u.CreatedAt,
+	}
+
+	if preload {
+		payload["user"] = u.User.ShortJson()
+		payload["device"] = u.Device.Json()
+	}
+
+	return payload
+}
