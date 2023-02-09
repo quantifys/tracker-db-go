@@ -47,3 +47,19 @@ type userRoleRegistry struct {
 	Manufacturer  int16
 	EndUser       int16
 }
+
+var TrackerDeviceStatus = newTrackerDeviceStatusRegistry()
+
+func newTrackerDeviceStatusRegistry() *trackerDeviceStatusRegistry {
+	return &trackerDeviceStatusRegistry{
+		Unsold:    1,
+		Sold:      2,
+		Certified: 3,
+	}
+}
+
+type trackerDeviceStatusRegistry struct {
+	Unsold    int16
+	Sold      int16
+	Certified int16
+}

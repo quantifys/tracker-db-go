@@ -17,6 +17,7 @@ type Device struct {
 	Phone2   sql.NullString `gorm:"column:phone_2;unique;default:null" json:"phone2"`
 	Iccid    sql.NullString `gorm:"column:iccid;unique;default:null" json:"iccid"`
 	Type     int16          `gorm:"column:type;" json:"type"`
+	Status   int16          `gorm:"column:status;" json:"status"`
 }
 
 func (Device) TableName() string {
