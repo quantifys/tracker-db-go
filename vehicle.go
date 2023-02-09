@@ -13,16 +13,16 @@ type Vehicle struct {
 	User       User           `gorm:"foreignKey:UserId"`
 	DeviceId   *uuid.UUID     `gorm:"type:uuid;column:device_id;unique" json:"deviceId"`
 	Device     Device         `gorm:"foreignKey:DeviceId"`
-	Type       string         `gorm:"column:type;" json:"type"`
+	Type       int16          `gorm:"column:type;default:1" json:"type"`
 	VMake      string         `gorm:"column:make;" json:"make"`
 	VModel     string         `gorm:"column:model;" json:"model"`
 	RegNumber  string         `gorm:"column:reg_number;" json:"regNumber"`
 	Attributes datatypes.JSON `gorm:"type:jsonb;column:attributes;" json:"attributes"`
 	Nickname   string         `gorm:"column:nickname;" json:"nickname"`
-	Odometer   string         `gorm:"column:odometer;" json:"odometer"`
-	Mileage    string         `gorm:"column:mileage;" json:"mileage"`
-	SpeedLimit string         `gorm:"column:speed_limit;" json:"speedLimit"`
-	FuelLevel  string         `gorm:"column:fuel_level;" json:"fuelLevel"`
+	Odometer   int16          `gorm:"column:odometer;" json:"odometer"`
+	Mileage    int16          `gorm:"column:mileage;" json:"mileage"`
+	SpeedLimit int16          `gorm:"column:speed_limit;" json:"speedLimit"`
+	FuelLevel  int16          `gorm:"column:fuel_level;" json:"fuelLevel"`
 }
 
 func (Vehicle) TableName() string {

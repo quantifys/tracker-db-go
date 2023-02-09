@@ -9,10 +9,12 @@ type Device struct {
 	gorm.Model
 	Id       uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()" json:"id"`
 	SerialNo string    `gorm:"column:serial_no;unique" json:"serialNo"`
-	Imei1    string    `gorm:"column:imei_1;unique" json:"imei1"`
-	Imei2    string    `gorm:"column:imei_2;unique" json:"imei2"`
+	Imei     string    `gorm:"column:imei;unique" json:"imei"`
+	Esim1    string    `gorm:"column:esim_1;unique" json:"esim1"`
+	Esim2    string    `gorm:"column:esim_2;unique" json:"esim2"`
 	Phone1   string    `gorm:"column:phone_1;unique" json:"phone1"`
 	Phone2   string    `gorm:"column:phone_2;unique" json:"phone2"`
+	Iccid    string    `gorm:"column:iccid;unique" json:"iccid"`
 	Type     int16     `gorm:"column:type;" json:"type"`
 }
 
@@ -24,10 +26,12 @@ func (u Device) Json() map[string]interface{} {
 	payload := map[string]interface{}{
 		"id":        u.Id,
 		"serialNo":  u.SerialNo,
-		"imei1":     u.Imei1,
-		"imei2":     u.Imei2,
+		"imei":      u.Imei,
+		"esim1":     u.Esim1,
+		"esim2":     u.Esim2,
 		"phone1":    u.Phone1,
 		"phone2":    u.Phone2,
+		"iccid":     u.Iccid,
 		"type":      u.Type,
 		"createdAt": u.CreatedAt,
 	}

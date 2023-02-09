@@ -16,6 +16,7 @@ type User struct {
 	Email        sql.NullString `gorm:"column:email;unique" json:"email"`
 	Username     string         `gorm:"column:username;unique" json:"username"`
 	Role         int16          `gorm:"column:role;default:3" json:"role"`
+	Active       bool           `gorm:"column:active;default:true" json:"active"`
 	PasswordHash sql.NullString `gorm:"column:password_hash" json:"passwordHash"`
 	ProfilePic   sql.NullString `gorm:"column:profile_pic" json:"profilePic"`
 	Gender       sql.NullInt16  `gorm:"column:gender" json:"gender"`
@@ -28,11 +29,12 @@ func (User) TableName() string {
 
 func (u User) ShortJson() map[string]interface{} {
 	payload := map[string]interface{}{
-		"id":    u.Id,
-		"name":  u.Name,
-		"email": u.Email,
-		"phone": u.Phone,
-		"role":  u.Role,
+		"id":     u.Id,
+		"name":   u.Name,
+		"email":  u.Email,
+		"phone":  u.Phone,
+		"role":   u.Role,
+		"active": u.Active,
 	}
 	return payload
 }
@@ -44,6 +46,7 @@ func (u User) Json() map[string]interface{} {
 		"email":      nil,
 		"phone":      u.Phone,
 		"role":       u.Role,
+		"active":     u.Active,
 		"profilePic": nil,
 		"gender":     nil,
 		"birthDate":  nil,
