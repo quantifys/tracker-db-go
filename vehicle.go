@@ -64,7 +64,7 @@ func (u Vehicle) Json(preload bool) map[string]interface{} {
 
 	if preload {
 		payload["user"] = u.User.ShortJson()
-		payload["device"] = u.Device.Json()
+		payload["device"] = u.Device.ShortJson()
 	}
 
 	return payload

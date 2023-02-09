@@ -24,6 +24,18 @@ func (Device) TableName() string {
 	return "devices"
 }
 
+func (u Device) ShortJson() map[string]interface{} {
+	payload := map[string]interface{}{
+		"id":        u.Id,
+		"serialNo":  u.SerialNo,
+		"imei":      u.Imei,
+		"type":      u.Type,
+		"status":    u.Status,
+		"createdAt": u.CreatedAt,
+	}
+	return payload
+}
+
 func (u Device) Json() map[string]interface{} {
 	payload := map[string]interface{}{
 		"id":        u.Id,

@@ -29,12 +29,15 @@ func (User) TableName() string {
 
 func (u User) ShortJson() map[string]interface{} {
 	payload := map[string]interface{}{
-		"id":     u.Id,
-		"name":   u.Name,
-		"email":  u.Email,
-		"phone":  u.Phone,
-		"role":   u.Role,
-		"active": u.Active,
+		"id":       u.Id,
+		"name":     u.Name,
+		"phone":    u.Phone,
+		"role":     u.Role,
+		"username": u.Username,
+		"active":   u.Active,
+	}
+	if u.Email.Valid {
+		payload["email"] = u.Email.String
 	}
 	return payload
 }
@@ -45,6 +48,7 @@ func (u User) Json() map[string]interface{} {
 		"name":       u.Name,
 		"email":      nil,
 		"phone":      u.Phone,
+		"username":   u.Username,
 		"role":       u.Role,
 		"active":     u.Active,
 		"profilePic": nil,
