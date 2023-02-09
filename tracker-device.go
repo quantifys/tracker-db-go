@@ -29,10 +29,10 @@ func (u Device) Json() map[string]interface{} {
 		"serialNo":  u.SerialNo,
 		"imei":      u.Imei,
 		"esim1":     u.Esim1,
-		"esim2":     u.Esim2,
+		"esim2":     u.Esim2.String,
 		"phone1":    u.Phone1,
-		"phone2":    u.Phone2,
-		"iccid":     u.Iccid,
+		"phone2":    u.Phone2.String,
+		"iccid":     u.Iccid.String,
 		"type":      u.Type,
 		"createdAt": u.CreatedAt,
 	}
