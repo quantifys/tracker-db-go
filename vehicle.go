@@ -24,6 +24,7 @@ type Vehicle struct {
 	Mileage    sql.NullInt16  `gorm:"column:mileage;" json:"mileage"`
 	SpeedLimit sql.NullInt16  `gorm:"column:speed_limit;" json:"speedLimit"`
 	FuelLevel  sql.NullInt16  `gorm:"column:fuel_level;" json:"fuelLevel"`
+	Status     int16          `gorm:"column:status;" json:"status"`
 }
 
 func (Vehicle) TableName() string {
@@ -32,16 +33,14 @@ func (Vehicle) TableName() string {
 
 func (u Vehicle) ShortJson() map[string]interface{} {
 	payload := map[string]interface{}{
-		"id":         u.Id,
-		"type":       u.Type,
-		"make":       u.VMake,
-		"model":      u.VModel,
-		"regNumber":  u.RegNumber,
-		"nickname":   u.Nickname,
-		"odometer":   u.Odometer,
-		"mileage":    u.Mileage,
-		"speedLimit": u.SpeedLimit,
-		"createdAt":  u.CreatedAt,
+		"id":        u.Id,
+		"type":      u.Type,
+		"make":      u.VMake,
+		"model":     u.VModel,
+		"regNumber": u.RegNumber,
+		"nickname":  u.Nickname,
+		"status":    u.Status,
+		"createdAt": u.CreatedAt,
 	}
 	return payload
 }
@@ -55,9 +54,11 @@ func (u Vehicle) Json(preload bool) map[string]interface{} {
 		"regNumber":  u.RegNumber,
 		"attributes": u.Attributes,
 		"nickname":   u.Nickname,
-		"odometer":   u.Odometer,
-		"mileage":    u.Mileage,
-		"speedLimit": u.SpeedLimit,
+		"odometer":   u.Odometer.Int16,
+		"mileage":    u.Mileage.Int16,
+		"speedLimit": u.SpeedLimit.Int16,
+		"fuelLevel":  u.FuelLevel.Int16,
+		"status":     u.Status,
 		"createdAt":  u.CreatedAt,
 	}
 

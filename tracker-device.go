@@ -35,6 +35,7 @@ func (u Device) Json() map[string]interface{} {
 		"phone2":    u.Phone2.String,
 		"iccid":     u.Iccid.String,
 		"type":      u.Type,
+		"status":    u.Status,
 		"createdAt": u.CreatedAt,
 	}
 	return payload

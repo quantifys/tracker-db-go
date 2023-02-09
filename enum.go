@@ -63,3 +63,17 @@ type trackerDeviceStatusRegistry struct {
 	Sold      int16
 	Certified int16
 }
+
+var VehicleStatus = newVehicleStatusRegistry()
+
+func newVehicleStatusRegistry() *vehicleStatusRegistry {
+	return &vehicleStatusRegistry{
+		New:    1,
+		Issued: 2,
+	}
+}
+
+type vehicleStatusRegistry struct {
+	New    int16
+	Issued int16
+}
