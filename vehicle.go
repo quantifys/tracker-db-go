@@ -1,6 +1,7 @@
 package models
 
 import (
+	"database/sql"
 	"github.com/google/uuid"
 	"gorm.io/datatypes"
 	"gorm.io/gorm"
@@ -19,10 +20,10 @@ type Vehicle struct {
 	RegNumber  string         `gorm:"column:reg_number;" json:"regNumber"`
 	Attributes datatypes.JSON `gorm:"type:jsonb;column:attributes;" json:"attributes"`
 	Nickname   string         `gorm:"column:nickname;" json:"nickname"`
-	Odometer   int16          `gorm:"column:odometer;" json:"odometer"`
-	Mileage    int16          `gorm:"column:mileage;" json:"mileage"`
-	SpeedLimit int16          `gorm:"column:speed_limit;" json:"speedLimit"`
-	FuelLevel  int16          `gorm:"column:fuel_level;" json:"fuelLevel"`
+	Odometer   sql.NullInt16  `gorm:"column:odometer;" json:"odometer"`
+	Mileage    sql.NullInt16  `gorm:"column:mileage;" json:"mileage"`
+	SpeedLimit sql.NullInt16  `gorm:"column:speed_limit;" json:"speedLimit"`
+	FuelLevel  sql.NullInt16  `gorm:"column:fuel_level;" json:"fuelLevel"`
 }
 
 func (Vehicle) TableName() string {

@@ -1,21 +1,22 @@
 package models
 
 import (
+	"database/sql"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
 type Device struct {
 	gorm.Model
-	Id       uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()" json:"id"`
-	SerialNo string    `gorm:"column:serial_no;unique" json:"serialNo"`
-	Imei     string    `gorm:"column:imei;unique" json:"imei"`
-	Esim1    string    `gorm:"column:esim_1;unique" json:"esim1"`
-	Esim2    string    `gorm:"column:esim_2;unique" json:"esim2"`
-	Phone1   string    `gorm:"column:phone_1;unique" json:"phone1"`
-	Phone2   string    `gorm:"column:phone_2;unique" json:"phone2"`
-	Iccid    string    `gorm:"column:iccid;unique" json:"iccid"`
-	Type     int16     `gorm:"column:type;" json:"type"`
+	Id       uuid.UUID      `gorm:"type:uuid;default:uuid_generate_v4()" json:"id"`
+	SerialNo string         `gorm:"column:serial_no;unique" json:"serialNo"`
+	Imei     string         `gorm:"column:imei;unique" json:"imei"`
+	Esim1    string         `gorm:"column:esim_1;unique" json:"esim1"`
+	Esim2    sql.NullString `gorm:"column:esim_2;unique;default:null" json:"esim2"`
+	Phone1   string         `gorm:"column:phone_1;unique" json:"phone1"`
+	Phone2   sql.NullString `gorm:"column:phone_2;unique;default:null" json:"phone2"`
+	Iccid    sql.NullString `gorm:"column:iccid;unique;default:null" json:"iccid"`
+	Type     int16          `gorm:"column:type;" json:"type"`
 }
 
 func (Device) TableName() string {

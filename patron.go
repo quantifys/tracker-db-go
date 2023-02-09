@@ -1,6 +1,7 @@
 package models
 
 import (
+	"database/sql"
 	"github.com/google/uuid"
 	"github.com/lib/pq"
 	"gorm.io/gorm"
@@ -15,13 +16,13 @@ type Patron struct {
 	Vendor       User           `gorm:"foreignKey:VendorId"`
 	TrackingTags pq.StringArray `gorm:"column:tracking_tags;" json:"trackingTags"`
 	Address1     string         `gorm:"column:address_1;" json:"address1"`
-	Address2     string         `gorm:"column:address_2;" json:"address2"`
+	Address2     sql.NullString `gorm:"column:address_2;" json:"address2"`
 	Locality     string         `gorm:"column:locality;" json:"locality"`
 	City         string         `gorm:"column:city;" json:"city"`
 	PostalCode   string         `gorm:"column:postal_code;" json:"postalCode"`
 	State        string         `gorm:"column:state;" json:"state"`
 	Country      string         `gorm:"column:country;" json:"country"`
-	Gstn         string         `gorm:"column:gstn;unique" json:"gstn"`
+	Gstn         sql.NullString `gorm:"column:gstn;unique" json:"gstn"`
 	Active       bool           `gorm:"column:active;default:true" json:"active"`
 }
 
