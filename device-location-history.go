@@ -20,6 +20,8 @@ type DeviceLocationHistory struct {
 	InputVoltage           float32    `gorm:"column:input_voltage;" json:"inputVoltage"`
 	InternalBatteryVoltage float32    `gorm:"column:internal_battery_voltage;" json:"internalBatteryVoltage"`
 	GsmSignalStrength      int16      `gorm:"column:gsm_signal_strength;" json:"gsmSignalStrength"`
+	NetworkOperator        string     `gorm:"column:network_operator;" json:"networkOperator"`
+	PacketString           string     `gorm:"column:packet_string;" json:"packetString"`
 	CreatedAt              time.Time  `gorm:"column:created_at;" json:"createdAt"`
 }
 
