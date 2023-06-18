@@ -10,7 +10,7 @@ type DeviceLocationHistory struct {
 	Id                     uuid.UUID  `gorm:"type:uuid;default:uuid_generate_v4()" json:"id"`
 	DeviceId               *uuid.UUID `gorm:"type:uuid;column:device_id;unique" json:"deviceId"`
 	Device                 Device     `gorm:"foreignKey:DeviceId"`
-	Position               string     `gorm:"column:position;" json:"position"`
+	Position               GeoJson    `gorm:"column:position;" json:"position"`
 	Speed                  float32    `gorm:"column:speed;" json:"speed"`
 	Altitude               float32    `gorm:"column:altitude;" json:"altitude"`
 	Provider               int16      `gorm:"column:provider;" json:"provider"`
