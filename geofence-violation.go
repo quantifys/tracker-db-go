@@ -14,7 +14,7 @@ type GeofenceViolation struct {
 	StartedAt    time.Time `gorm:"column:started_at" json:"startedAt"`
 	EndedAt      time.Time `gorm:"column:ended_at" json:"endedAt"`
 	IsViolated   bool      `gorm:"column:is_violated" json:"isViolated"`
-	LastLocation GeoJson   `gorm:"column:serial_no" json:"serialNo"`
+	LastLocation GeoJson   `gorm:"column:last_location" json:"lastLocation"`
 }
 
 func (GeofenceViolation) TableName() string {
