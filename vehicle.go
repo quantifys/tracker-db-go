@@ -17,11 +17,11 @@ type Vehicle struct {
 	Type          int16          `gorm:"column:type;default:1" json:"type"`
 	VMake         string         `gorm:"column:make;" json:"make"`
 	VModel        string         `gorm:"column:model;" json:"model"`
-	EngineNumber  string         `gorm:"column:engine_number;" json:"engineNumber"`
-	ChassisNumber string         `gorm:"column:chassis_number;" json:"chassisNumber"`
-	RegNumber     string         `gorm:"column:reg_number;" json:"regNumber"`
+	EngineNumber  sql.NullString `gorm:"column:engine_number;" json:"engineNumber"`
+	ChassisNumber sql.NullString `gorm:"column:chassis_number;" json:"chassisNumber"`
+	RegNumber     sql.NullString `gorm:"column:reg_number;" json:"regNumber"`
 	Attributes    datatypes.JSON `gorm:"type:jsonb;column:attributes;" json:"attributes"`
-	Nickname      string         `gorm:"column:nickname;" json:"nickname"`
+	Nickname      sql.NullString `gorm:"column:nickname;" json:"nickname"`
 	Odometer      sql.NullInt16  `gorm:"column:odometer;" json:"odometer"`
 	Mileage       sql.NullInt16  `gorm:"column:mileage;" json:"mileage"`
 	SpeedLimit    sql.NullInt16  `gorm:"column:speed_limit;" json:"speedLimit"`
@@ -51,22 +51,46 @@ func (u Vehicle) ShortJson() map[string]interface{} {
 
 func (u Vehicle) Json(preload bool) map[string]interface{} {
 	payload := map[string]interface{}{
-		"id":            u.Id,
-		"type":          u.Type,
-		"make":          u.VMake,
-		"model":         u.VModel,
-		"regNumber":     u.RegNumber,
-		"engineNumber":  u.EngineNumber,
-		"chassisNumber": u.ChassisNumber,
-		"attributes":    u.Attributes,
-		"nickname":      u.Nickname,
-		"odometer":      u.Odometer.Int16,
-		"mileage":       u.Mileage.Int16,
-		"speedLimit":    u.SpeedLimit.Int16,
-		"fuelLevel":     u.FuelLevel.Int16,
-		"status":        u.Status,
-		"active":        u.Active,
-		"createdAt":     u.CreatedAt,
+		"id":         u.Id,
+		"type":       u.Type,
+		"make":       u.VMake,
+		"model":      u.VModel,
+		"attributes": u.Attributes,
+		"status":     u.Status,
+		"active":     u.Active,
+		"createdAt":  u.CreatedAt,
+	}
+
+	if u.RegNumber.Valid {
+		payload["regNumber"] = u.RegNumber.String
+	}
+
+	if u.EngineNumber.Valid {
+		payload["engineNumber"] = u.EngineNumber.String
+	}
+
+	if u.ChassisNumber.Valid {
+		payload["chassisNumber"] = u.ChassisNumber.String
+	}
+
+	if u.Nickname.Valid {
+		payload["nickname"] = u.Nickname.String
+	}
+
+	if u.Odometer.Valid {
+		payload["odometer"] = u.Odometer.Int16
+	}
+
+	if u.Mileage.Valid {
+		payload["mileage"] = u.Mileage.Int16
+	}
+
+	if u.SpeedLimit.Valid {
+		payload["speedLimit"] = u.SpeedLimit.Int16
+	}
+
+	if u.FuelLevel.Valid {
+		payload["fuelLevel"] = u.FuelLevel.Int16
 	}
 
 	if preload {
