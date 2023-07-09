@@ -9,9 +9,9 @@ import (
 type DeviceEmergencyHistory struct {
 	DeviceId  uuid.UUID `gorm:"column:device_id" json:"deviceId"`
 	Position  GeoJson   `gorm:"column:position" json:"position"`
-	Distance  float32   `gorm:"column:distance" json:"distance"`
-	Speed     float32   `gorm:"column:speed" json:"speed"`
-	Altitude  float32   `gorm:"column:altitude" json:"altitude"`
+	Distance  float64   `gorm:"column:distance" json:"distance"`
+	Speed     float64   `gorm:"column:speed" json:"speed"`
+	Altitude  float64   `gorm:"column:altitude" json:"altitude"`
 	ReadAt    time.Time `gorm:"column:read_at" json:"readAt"`
 	CreatedAt time.Time `gorm:"column:created_at" json:"createdAt"`
 	Device    Device    `gorm:"foreignKey:DeviceId"`

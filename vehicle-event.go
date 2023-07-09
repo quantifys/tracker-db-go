@@ -16,7 +16,7 @@ type VehicleEvent struct {
 	EndedAt      sql.NullTime `gorm:"column:ended_at" json:"endedAt"`
 	LastLocation GeoJson      `gorm:"column:last_location" json:"lastLocation"`
 	IsComplete   bool         `gorm:"column:is_complete;default:false" json:"isComplete"`
-	EventType    int32        `gorm:"type:integer;column:event_type" json:"eventType"`
+	EventType    int16        `gorm:"type:integer;column:event_type" json:"eventType"`
 	Vehicle      Vehicle      `gorm:"foreignKey:VehicleId"`
 }
 

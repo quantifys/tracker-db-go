@@ -11,7 +11,7 @@ import (
 
 type GeoJsonPolygon struct {
 	Type        string        `json:"type"`
-	Coordinates [][][]float32 `json:"coordinates"`
+	Coordinates [][][]float64 `json:"coordinates"`
 }
 
 func (point GeoJsonPolygon) GormDataType() string {
@@ -32,7 +32,7 @@ func (point *GeoJsonPolygon) Scan(v interface{}) error {
 	return err
 }
 
-func (point *GeoJsonPolygon) GetCoordinates() [][]float32 {
+func (point *GeoJsonPolygon) GetCoordinates() [][]float64 {
 	coords := point.Coordinates[0]
 	coords = append(coords, point.Coordinates[0][0])
 	return coords

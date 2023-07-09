@@ -11,14 +11,14 @@ type DeviceLocationHistory struct {
 	DeviceId               *uuid.UUID `gorm:"type:uuid;column:device_id;unique" json:"deviceId"`
 	Device                 Device     `gorm:"foreignKey:DeviceId"`
 	Position               GeoJson    `gorm:"column:position;" json:"position"`
-	Speed                  float32    `gorm:"column:speed;" json:"speed"`
-	Altitude               float32    `gorm:"column:altitude;" json:"altitude"`
+	Speed                  float64    `gorm:"column:speed;" json:"speed"`
+	Altitude               float64    `gorm:"column:altitude;" json:"altitude"`
 	Provider               int16      `gorm:"column:provider;" json:"provider"`
 	ReadAt                 time.Time  `gorm:"column:read_at;" json:"readAt"`
 	IgnitionStatus         bool       `gorm:"column:ignition_status;" json:"ignitionStatus"`
-	Heading                float32    `gorm:"column:heading;" json:"heading"`
-	InputVoltage           float32    `gorm:"column:input_voltage;" json:"inputVoltage"`
-	InternalBatteryVoltage float32    `gorm:"column:internal_battery_voltage;" json:"internalBatteryVoltage"`
+	Heading                float64    `gorm:"column:heading;" json:"heading"`
+	InputVoltage           float64    `gorm:"column:input_voltage;" json:"inputVoltage"`
+	InternalBatteryVoltage float64    `gorm:"column:internal_battery_voltage;" json:"internalBatteryVoltage"`
 	GsmSignalStrength      int16      `gorm:"column:gsm_signal_strength;" json:"gsmSignalStrength"`
 	NetworkOperator        string     `gorm:"column:network_operator;" json:"networkOperator"`
 	PacketString           string     `gorm:"column:packet_string;" json:"packetString"`

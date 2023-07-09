@@ -11,7 +11,7 @@ import (
 
 type GeoJson struct {
 	Type        string    `json:"type"`
-	Coordinates []float32 `json:"coordinates"`
+	Coordinates []float64 `json:"coordinates"`
 }
 
 func (point GeoJson) GormDataType() string {

@@ -10,8 +10,8 @@ import (
 type FuelEntry struct {
 	gorm.Model
 	Id        uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4()" json:"id"`
-	Amount    float32   `gorm:"column:amount" json:"amount"`
-	Quantity  float32   `gorm:"column:quantity" json:"quantity"`
+	Amount    float64   `gorm:"column:amount" json:"amount"`
+	Quantity  float64   `gorm:"column:quantity" json:"quantity"`
 	FuelType  int32     `gorm:"column:fuel_type" json:"fuelType"`
 	FilledOn  time.Time `gorm:"column:filled_on" json:"filledOn"`
 	VehicleId uuid.UUID `gorm:"column:vehicle_id" json:"vehicleId"`
