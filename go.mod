@@ -4,6 +4,7 @@ go 1.19
 
 require (
 	github.com/google/uuid v1.3.0
+	github.com/lib/pq v1.10.2
 	gorm.io/datatypes v1.0.7
 	gorm.io/gorm v1.24.1
 )

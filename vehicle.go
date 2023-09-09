@@ -2,6 +2,7 @@ package models
 
 import (
 	"database/sql"
+
 	"github.com/google/uuid"
 	"gorm.io/datatypes"
 	"gorm.io/gorm"
@@ -94,8 +95,12 @@ func (u Vehicle) Json(preload bool) map[string]interface{} {
 	}
 
 	if preload {
-		payload["user"] = u.User.ShortJson()
-		payload["device"] = u.Device.ShortJson()
+		if (u.User.Id != uuid.Nil) {
+			payload["user"] = u.User.ShortJson()
+		}
+		if (u.Device.Id != uuid.Nil) {
+			payload["device"] = u.Device.ShortJson()
+		}
 	}
 
 	return payload
