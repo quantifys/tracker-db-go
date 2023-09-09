@@ -28,3 +28,17 @@ type DeviceLocationHistory struct {
 func (DeviceLocationHistory) TableName() string {
 	return "device_location_histories"
 }
+
+func (u DeviceLocationHistory) ShortJson() map[string]interface{} {
+	payload := map[string]interface{}{
+		"altitude":     u.Altitude,
+		"position":    u.Position,
+		"speed":     u.Speed,
+		"provider": u.Provider,
+		"readAt":   u.ReadAt,
+		"ignitionStatus":   u.IgnitionStatus,
+		"heading":   u.Heading,
+		"networkOperator":   u.NetworkOperator,
+	}
+	return payload
+}
