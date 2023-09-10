@@ -4,16 +4,18 @@ var TrackerDeviceType = newTrackerDeviceTypeRegistry()
 
 func newTrackerDeviceTypeRegistry() *trackerDeviceTypeRegistry {
 	return &trackerDeviceTypeRegistry{
-		Gemeni: 1,
-		Tedi:   2,
-		Pian:   3,
+		Quantifys: 1,
+		Tedi:      2,
+		Pian:      3,
+		Gemeni:    4,
 	}
 }
 
 type trackerDeviceTypeRegistry struct {
-	Gemeni int16
-	Tedi   int16
-	Pian   int16
+	Quantifys int16
+	Tedi      int16
+	Pian      int16
+	Gemeni    int16
 }
 
 var VehicleType = newVehicleTypeRegistry()
@@ -39,6 +41,9 @@ func newUserRoleRegistry() *userRoleRegistry {
 		Administrator: 1,
 		Manufacturer:  2,
 		EndUser:       3,
+		Distributor:   4,
+		Dealer:        5,
+		SubDealer:     6,
 	}
 }
 
@@ -46,6 +51,9 @@ type userRoleRegistry struct {
 	Administrator int16
 	Manufacturer  int16
 	EndUser       int16
+	Distributor   int16
+	Dealer        int16
+	SubDealer     int16
 }
 
 var TrackerDeviceStatus = newTrackerDeviceStatusRegistry()

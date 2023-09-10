@@ -10,17 +10,18 @@ import (
 
 type User struct {
 	gorm.Model
-	Id           uuid.UUID      `gorm:"type:uuid;default:uuid_generate_v4()" json:"id"`
-	Name         string         `gorm:"column:name" json:"name"`
-	Phone        string         `gorm:"column:phone;unique" json:"phone"`
-	Email        sql.NullString `gorm:"column:email;unique" json:"email"`
-	Username     string         `gorm:"column:username;unique" json:"username"`
-	Role         int16          `gorm:"column:role;default:3" json:"role"`
-	Active       bool           `gorm:"column:active;default:true" json:"active"`
-	PasswordHash sql.NullString `gorm:"column:password_hash" json:"passwordHash"`
-	ProfilePic   sql.NullString `gorm:"column:profile_pic" json:"profilePic"`
-	Gender       sql.NullInt16  `gorm:"column:gender" json:"gender"`
-	BirthDate    sql.NullTime   `gorm:"column:birth_date" json:"birthDate"`
+	Id              uuid.UUID      `gorm:"type:uuid;default:uuid_generate_v4()" json:"id"`
+	Name            string         `gorm:"column:name" json:"name"`
+	Phone           string         `gorm:"column:phone;unique" json:"phone"`
+	Email           sql.NullString `gorm:"column:email;unique" json:"email"`
+	Username        string         `gorm:"column:username;unique" json:"username"`
+	Role            int16          `gorm:"column:role;default:3" json:"role"`
+	Active          bool           `gorm:"column:active;default:true" json:"active"`
+	PasswordHash    sql.NullString `gorm:"column:password_hash" json:"passwordHash"`
+	ProfilePic      sql.NullString `gorm:"column:profile_pic" json:"profilePic"`
+	Gender          sql.NullInt16  `gorm:"column:gender" json:"gender"`
+	BirthDate       sql.NullTime   `gorm:"column:birth_date" json:"birthDate"`
+	ManufacturerTag sql.NullInt16  `gorm:"column:manufacturer_tag" json:"manufacturerTag"`
 }
 
 func (User) TableName() string {
@@ -67,6 +68,9 @@ func (u User) Json() map[string]interface{} {
 	}
 	if u.BirthDate.Valid {
 		payload["birthDate"] = u.BirthDate.Time.Format(time.RFC3339)
+	}
+	if u.ManufacturerTag.Valid {
+		payload["manufacturerTag"] = u.ManufacturerTag.Int16
 	}
 	return payload
 }
